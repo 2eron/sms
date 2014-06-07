@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" ng-app="smsApp">
+<head>
+	<meta charset="UTF-8">
+	<title ng-bind="'SMS-' + title"></title>
+	<link rel="stylesheet" href="/css/bundle.css">
+	<!-- <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'> -->
+</head>
+<body>
+<div class="container">
+	<div class="header-wrap">
+		<div class="layout">
+			<div class="header">
+				<a href="" class="logo">设计部分享会管理系统</a>
+				<div class="menu">
+					<ul class="menu-lst">
+						<li class="active"><a href="">用户管理</a></li>
+						<li><a href="">分享会管理</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="layout">
+		<div class="main">
+			<h2 class="main-hd" ng-bind="title"></h2>
+			<div class="main-bd" ng-view></div>
+		</div>
+	</div>
+	<div class="footer">
+		<p>&copy;RDC Deved by liw.</p>
+	</div>
+</div>
+
+<script src="lib/angular/angular.min.js"></script>
+<script src="lib/angular/angular-route.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/services.js"></script>
+<script src="js/controllers.js"></script>
+</body>
+</html>

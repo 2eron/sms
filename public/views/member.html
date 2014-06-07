@@ -1,0 +1,65 @@
+<table>
+	<thead>
+		<tr>
+			<th>姓名</th>
+			<th>工号</th>
+			<th>分组</th>
+			<th>邮箱</th>
+			<th>状态</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="member in members">
+			<td ng-bind="member.name"></td>
+			<td ng-bind="member.workNumber"></td>
+			<td ng-bind="member.group"></td>
+			<td ng-bind="member.email"></td>
+			<td ng-bind="member.actived"></td>
+			<td>
+				<a href="" ng-click="changeStatus(member._id, member.actived)" ng-show="member.actived">禁用</a>
+				<a href="" ng-click="changeStatus(member._id, member.actived)" ng-show="!member.actived">启用</a>
+				<a href="" ng-click="delete(member._id)">删除</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<form name="userForm" autocomplete="off" novalidate>
+	<ul class="form-lst">
+		<li class="form-item">
+			<label for="" class="form-item-name">姓名：</label>
+			<div class="form-item-main">
+				<input name="name" class="txt" type="text" ng-model="formData.name" required ng-class="{'txt-error': userForm.name.$invalid && submit.submitted}">
+				<p class="form-error" ng-show="userForm.name.$invalid && submit.submitted">姓名不能为空！</p>
+			</div>
+		</li>
+		<li class="form-item">
+			<label for="" class="form-item-name">工号：</label>
+			<div class="form-item-main">
+				<input class="txt" name="workNumber" type="text" ng-model="formData.workNumber" required ng-class="{'txt-error': userForm.workNumber.$invalid && submit.submitted}">
+				<p class="form-error" ng-show="userForm.workNumber.$invalid && submit.submitted">工号不能为空！</p>
+			</div>
+		</li>
+		<li class="form-item">
+			<label for="" class="form-item-name">邮箱：</label>
+			<div class="form-item-main">
+				<input class="txt" name="email" type="email" ng-model="formData.email" required  ng-class="{'txt-error': userForm.email.$invalid && submit.submitted}">
+				<p class="form-error" ng-show="userForm.email.$invalid && submit.submitted">邮箱格式错误！</p>
+			</div>
+		</li>
+		<li class="form-item">
+			<label for="" class="form-item-name">分组：</label>
+			<div class="form-item-main">
+				<select name="group" ng-model="formData.group">
+					<option ng-repeat="group in groups" value="{{ group.abbr }}">{{ group.name }}</option>
+				</select>
+			</div>
+		</li>
+		<li class="form-item form-submit">
+			<div class="form-item-main">
+				<button type="submit" class="btn btn-big btn-blue"  ng-click="addMember(userForm.$valid)">提交</button>
+			</div>
+		</li>
+	</ul>
+</form>

@@ -1,0 +1,113 @@
+// button scss
+// required: css3.scss
+
+@import "../base/_css3.scss";
+
+// variables
+$btnBaseClass: btn !default;
+$btnDisabledClass: disabled !default;
+$grayLight: #999;
+$darkerPercent: 4%;
+
+// button size class
+//             className, height, padding, fontSize
+$btnSizeSmall: small      32px    30px       14px  !default;
+$btnSizeBig:   big        42px    40px       16px  !default;
+$btnSizeGroup: $btnSizeSmall, $btnSizeBig !default;
+// button color class 
+//               className,   borderColor, fontColor, backgroundColor, gradient,  startColor,           endColor
+$btnColorRed:    red          #b32b24      #fff       #e0463e          false      rgba(230,77,69,1)     rgba(217,63,54,1);
+$btnColorYellow: yellow       #e6c317      #674800    #ffdb1a          false      rgba(255,226,38,1)    rgba(255,210,11,1);
+$btnColorBlue:   blue         #2876c0      #fff       #2f87d9          false      rgba(24,148,242,1)    rgba(32,137,217,1);
+$btnColorGray:   gray         #cccccc      #666       #e6e6e6          false      rgba(244,244,244,1)   rgba(224,224,224,1);
+$btnColorGroup:  $btnColorRed $btnColorYellow $btnColorBlue $btnColorGray !default;
+
+
+// button base style
+
+.#{$btnBaseClass}{
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    border: none;
+    @include border-radius(3px);
+}
+button.#{$btnBaseClass},
+input.#{$btnBaseClass}{
+    // for firefox
+    &::-moz-focus-inner{
+        border: none;
+        padding: 0;
+    }
+    &:focus{
+        outline: none;
+    }
+}
+a.#{$btnBaseClass}:hover{
+    text-decoration: none;
+}
+
+// button color style
+@each $colorItem in $btnColorGroup{
+    $colorClass: nth($colorItem,1);
+    $borderColor: nth($colorItem,2);
+    $fontColor: nth($colorItem,3);
+    $backgroundColor: nth($colorItem,4);
+    $gradient: nth($colorItem, 5);
+    $startColor: nth($colorItem,6);
+    $endColor: nth($colorItem,7);
+
+    $btnColorClass: $btnBaseClass+'-'+$colorClass;
+
+    .#{$btnColorClass}{
+        color: $fontColor;
+        background-color: $backgroundColor;
+        &:link,
+        &:visited{
+            color: $fontColor;
+        }
+        &:hover{
+            border-bottom-color: darken($borderColor, $darkerPercent);
+            background-color: darken($backgroundColor, $darkerPercent);
+            @if($gradient){
+                @include gradient-vertical(darken($startColor,$darkerPercent) 0,darken($endColor,$darkerPercent) 100%);
+            }
+            color: $fontColor;
+        }
+    }
+}
+
+// button size style
+@each $sizeItem in $btnSizeGroup{
+    $sizeClass: nth($sizeItem,1);
+    $height: nth($sizeItem,2);
+    $padding: nth($sizeItem,3);
+    $fontSize: nth($sizeItem,4);
+
+    $btnSizeClass: $btnBaseClass+'-'+$sizeClass;
+
+    .#{$btnSizeClass}{
+        height: $height - 2;
+        line-height: $height - 2;
+        padding: 0 $padding;
+        font-size: $fontSize;
+    }
+    button.#{$btnSizeClass},
+    input.#{$btnSizeClass}{
+        height: $height;
+    }
+}
+// button disabled
+.#{$btnDisabledClass},
+.#{$btnDisabledClass}:hover{
+    background-color: #e0e0e0;
+    color: $grayLight;
+    cursor: not-allowed;
+    opacity: .8;
+}
+a.#{$btnDisabledClass}{
+    color: $grayLight;
+}
