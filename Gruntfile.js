@@ -59,5 +59,5 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	// default
-	grunt.registerTask('default', ['compass','concat']);
+	grunt.registerTask('default', ['clean', 'compass','concat']);
 }
