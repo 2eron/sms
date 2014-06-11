@@ -34,13 +34,13 @@
 				<p class="form-error" ng-show="userForm.name.$invalid && submit.submitted">姓名不能为空！</p>
 			</div>
 		</li>
-		<li class="form-item">
+		<!-- <li class="form-item">
 			<label for="" class="form-item-name">工号：</label>
 			<div class="form-item-main">
 				<input class="txt" name="workNumber" type="text" ng-model="formData.workNumber" required ng-class="{'txt-error': userForm.workNumber.$invalid && submit.submitted}">
 				<p class="form-error" ng-show="userForm.workNumber.$invalid && submit.submitted">工号不能为空！</p>
 			</div>
-		</li>
+		</li> -->
 		<li class="form-item">
 			<label for="" class="form-item-name">邮箱：</label>
 			<div class="form-item-main">
@@ -61,5 +61,6 @@
 				<button type="submit" class="btn btn-big btn-blue"  ng-click="addMember(userForm.$valid)">提交</button>
 			</div>
 		</li>
+		<li><input type="text" ng-model="userForm.workNumber" user-unique></li>
 	</ul>
 </form>

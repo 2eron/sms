@@ -4,7 +4,8 @@
 var smsApp = angular.module('smsApp', [
 	'ngRoute',
 	'smsControllers',
-	'smsServices'
+	'smsServices',
+	'smsDirectives'
 ]);
 
 smsApp.config(['$routeProvider', function($routeProvider) {
